@@ -9,6 +9,7 @@
 #define CANADIANEXPERIENCE_ARM_H
 
 #include "RotationSink.h"
+#include "RodEndSource.h"
 
 /**
  * Class Representing an Arm Object
@@ -18,8 +19,17 @@ private:
     /// Rotation sink
     std::shared_ptr<RotationSink> mSink;
 
+    /// Position source
+    std::shared_ptr<RodEndSource> mSource;
+
+    /// Length of the Arm
+    double mLength;
+
 public:
-    Arm();
+    Arm(double length);
+
+    /// Default Constructor (disabled)
+    Arm() = delete;
 
     /// Copy constructor (disabled)
     Arm(const Arm &) = delete;
@@ -36,6 +46,12 @@ public:
      * @return RotationSink Object
      */
     std::shared_ptr<RotationSink> GetSink() const { return mSink; }
+
+    /**
+     * Get the Source Object
+     * @return RodEndSource Object
+     */
+    std::shared_ptr<RodEndSource> GetSource() const { return mSource; }
 };
 
 #endif //CANADIANEXPERIENCE_ARM_H

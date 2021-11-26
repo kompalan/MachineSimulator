@@ -9,6 +9,7 @@
 #include "Gear.h"
 #include "Arm.h"
 #include "Piston.h"
+#include "Rod.h"
 
 /**
  * Constructor
@@ -71,7 +72,8 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     gear4->SetPositionOffset(wxPoint(250+105, 250));
     gear4->SetPhase(-0.1);
 
-    auto arm1 = std::make_shared<Arm>();
+    // Add an Arm of length 100
+    auto arm1 = std::make_shared<Arm>(100);
     machine->AddComponent(arm1);
     arm1->SetPositionOffset(wxPoint(50, 50));
     motor->GetSource()->AddSink(arm1->GetSink().get());
@@ -79,6 +81,10 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     auto piston1 = std::make_shared<Piston>();
     piston1->SetPositionOffset(wxPoint(-100, 100));
     machine->AddComponent(piston1);
+
+    auto rod = std::make_shared<Rod>(200);
+    arm1->GetSource()->AddSink(rod->GetSink().get());
+    machine->AddComponent(rod);
 
     return machine;
 }

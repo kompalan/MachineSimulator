@@ -54,6 +54,12 @@ public:
      * @param speed Speed of the motor
      */
     void SetSpeed(double speed) { mSpeed = speed; };
+
+    /**
+     * Gets the speed of the motor
+     * @return Speed of the motor
+     */
+    double GetSpeed() const { return mSpeed; }
 };
 
 #endif //CANADIANEXPERIENCE_MOTOR_H

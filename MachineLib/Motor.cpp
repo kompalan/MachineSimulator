@@ -9,9 +9,6 @@
 /// Rotor Radius Constant
 const static double BasicRotorRadius = 15;
 
-/// Rotor Offset TODO: Move this to position offset
-const static double RotorOffset = 50;
-
 /**
  * Constructor. Sets up the picture of the rotor
  * and the background of the motor.
@@ -33,7 +30,6 @@ Motor::Motor() : Component()
 
     AddPoint(0.0, BasicRotorRadius * sin(angle));
     AddPoint(0.0, -BasicRotorRadius * sin(angle));
-
 }
 
 /**

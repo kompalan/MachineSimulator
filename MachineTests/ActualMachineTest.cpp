@@ -11,8 +11,3 @@ TEST(ActualMachineTest, Construct)
 {
     ActualMachine machine;
 }
-
-TEST(ActualMachineTest, AddComponent)
-{
-
-}
