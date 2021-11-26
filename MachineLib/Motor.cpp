@@ -6,9 +6,16 @@
 #include "pch.h"
 #include "Motor.h"
 
+/// Rotor Radius Constant
 const static double BasicRotorRadius = 15;
+
+/// Rotor Offset TODO: Move this to position offset
 const static double RotorOffset = 50;
 
+/**
+ * Constructor. Sets up the picture of the rotor
+ * and the background of the motor.
+ */
 Motor::Motor() : Component()
 {
     mSource = std::make_shared<RotationSource>();
@@ -29,11 +36,20 @@ Motor::Motor() : Component()
 
 }
 
+/**
+ * Call the source with information about
+ * this motor's rotation
+ */
 void Motor::Update()
 {
     mSource->UpdateSinks(mRotation);
 }
 
+/**
+ * Draw function. Draws the motor with two polygon
+ * objects.
+ * @param graphics wxGraphics object
+ */
 void Motor::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     mBackground->SetColor(*wxBLACK);
@@ -41,9 +57,15 @@ void Motor::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
     SetColor(*wxRED);
     SetRotation(mRotation);
-    DrawPolygon(graphics, GetMachinePosition().x + RotorOffset, GetMachinePosition().y - RotorOffset);
+
+    Component::Draw(graphics);
 }
 
+/**
+ * Set the current rotation based on the
+ * time and speed and call update
+ * @param time Time machine is at
+ */
 void Motor::UpdateMachine(double time)
 {
     mRotation = time * mSpeed;

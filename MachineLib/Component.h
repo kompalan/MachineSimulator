@@ -32,13 +32,23 @@ public:
     /// Assignment operator
     void operator=(const Component &) = delete;
 
+    /// Stub Update Function
     virtual void Update() {};
-    virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) = 0;
+    virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics);
     wxPoint GetMachinePosition() const;
     wxPoint GetPositionOffset() const;
     void SetPositionOffset(wxPoint position);
 
+    /**
+     * Sets the Machine object
+     * @param machine Machine to set
+     */
     void SetMachine(ActualMachine* machine) { mMachine = machine; }
+
+    /**
+     * Gets the current Machine
+     * @return Machine to get
+     */
     ActualMachine* GetMachine() const { return mMachine; }
 };
 

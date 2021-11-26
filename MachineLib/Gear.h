@@ -17,22 +17,32 @@
  */
 class Gear : public Component {
 private:
+    /// Teeth of the Gear
     int mTeeth;
+
+    /// Outer Radius of the Gear
     int mOuterRadius;
+
+    /// Inner Radius of the Gear
     int mInnerRadius;
+
+    /// Color of the Gear
     wxColor mColor;
 
+    /// Gear sink object
     std::shared_ptr<RotationSink> mSink;
 
+    /// Gear source object
     std::shared_ptr<RotationSource> mSource;
 
+    /// Gears that this gear drives
     std::vector<Gear *> mGears;
 
+    /// Gear rotation
     double mGearRotation = 0.0;
 
+    /// Phase offset of the gear (used for meshing)
     double mPhase = 0.0;
-
-    wxPoint mTempPos = wxPoint(250, 250);
 
 public:
     /// Default constructor (disabled)
@@ -50,24 +60,51 @@ public:
 
     void Update() override;
 
-    std::shared_ptr<RotationSink> GetSink() const { return mSink; }
-
-    std::shared_ptr<RotationSource> GetSource() const { return mSource; }
-
-    void SetGearRotation(double rotation) { mGearRotation = rotation; }
-
-    double GetGearRotation() const { return mGearRotation; }
-
-    int GetNumTeeth() const { return mTeeth; }
-
     void AddGear(Gear* gear);
 
     void Drive();
 
-    void SetPhase(double phase) { mPhase = phase; }
-    double GetPhase() const { return mPhase; }
+    /**
+     * Getter for the Sink
+     * @return RotationSink object
+     */
+    std::shared_ptr<RotationSink> GetSink() const { return mSink; }
 
-    void SetTempPos(wxPoint pos) { mTempPos = pos; }
+    /**
+     * Getter for the source
+     * @return RotationSource object
+     */
+    std::shared_ptr<RotationSource> GetSource() const { return mSource; }
+
+    /**
+     * Setter for the gear rotation
+     * @param rotation Rotation to set in rotations
+     */
+    void SetGearRotation(double rotation) { mGearRotation = rotation; }
+
+    /**
+     * Gets the gear rotation
+     * @return rotations
+     */
+    double GetGearRotation() const { return mGearRotation; }
+
+    /**
+     * Gets the number of teeth on the gear
+     * @return Number of teeth
+     */
+    int GetNumTeeth() const { return mTeeth; }
+
+    /**
+     * Sets the phase of the gear
+     * @param phase Phase to set
+     */
+    void SetPhase(double phase) { mPhase = phase; }
+
+    /**
+     * Gets the phase of the gear
+     * @return Phase of the gear
+     */
+    double GetPhase() const { return mPhase; }
 };
 
 #endif //CANADIANEXPERIENCE_GEAR_H

@@ -6,18 +6,21 @@
 #include "pch.h"
 #include "Piston.h"
 
+/**
+ * Constructor
+ */
 Piston::Piston()
 {
     Rectangle(-10, 0, 50, 100);
 }
 
+/**
+ * Draw function. Draws an image of a piston
+ * to the screen
+ * @param graphics wxGraphics object
+ */
 void Piston::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     SetImage(L"images/piston.png");
-    DrawPolygon(graphics, GetMachinePosition().x - 100, GetMachinePosition().y - 100);
-}
-
-void Piston::Update()
-{
-    Component::Update();
+    Component::Draw(graphics);
 }

@@ -10,9 +10,15 @@
 
 #include "Component.h"
 
+/**
+ * Class Representing a RotationSink Object
+ */
 class RotationSink {
 private:
+    /// Rotation of the Source
     double mRotation = 0;
+
+    /// Component tht this sink is tied to
     Component* mDependentComponent;
 
 public:
@@ -28,6 +34,10 @@ public:
     RotationSink(Component* dependency);
     void UpdateRotation(double rotation);
 
+    /**
+     * Gets the rotation
+     * @return Rotation
+     */
     double GetRotation() const { return mRotation; }
 };
 

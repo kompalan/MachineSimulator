@@ -10,8 +10,12 @@
 
 #include "RotationSink.h"
 
+/**
+ * Class representing a RotationSource Object
+ */
 class RotationSource {
 private:
+    /// Sinks that this Source is tied to
     std::vector<RotationSink *> mSinks;
 
 public:

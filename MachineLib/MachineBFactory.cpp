@@ -7,11 +7,19 @@
 #include "MachineBFactory.h"
 #include "Shape.h"
 
+/**
+ * Constructor
+ * @param imagesDir Images Directory
+ */
 MachineBFactory::MachineBFactory(std::wstring imagesDir)
 {
     mImagesDir = imagesDir;
 }
 
+/**
+ * Creates a Machine Object
+ * @return ActualMachine Object
+ */
 std::shared_ptr<ActualMachine> MachineBFactory::Create()
 {
     auto machine = std::make_shared<ActualMachine>();

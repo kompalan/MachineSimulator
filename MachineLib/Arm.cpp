@@ -5,6 +5,9 @@
 
 #include "Arm.h"
 
+/**
+ * Constructor
+ */
 Arm::Arm() : Component()
 {
     mSink = std::make_shared<RotationSink>(this);
@@ -12,14 +15,22 @@ Arm::Arm() : Component()
     Rectangle(0, 10, 100, 20);
 }
 
+/**
+ * Draws the Arm to the screen and rotates it based
+ * on sink information
+ * @param graphics wxGraphics Object
+ */
 void Arm::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     SetImage(L"images/arm1.png");
     SetRotation(mSink->GetRotation());
-    DrawPolygon(graphics, GetMachinePosition().x + 50, GetMachinePosition().y - 50);
+    Component::Draw(graphics);
+    //DrawPolygon(graphics, GetMachinePosition().x + 50, GetMachinePosition().y - 50);
 }
 
-
+/**
+ * Update function
+ */
 void Arm::Update()
 {
 

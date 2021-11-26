@@ -30,6 +30,7 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
 
     // Add a Motor
     auto motor = std::make_shared<Motor>();
+    motor->SetPositionOffset(wxPoint(50, 50));
     machine->SetRootMotor(motor);
     machine->AddComponent(motor);
 
@@ -72,9 +73,11 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
 
     auto arm1 = std::make_shared<Arm>();
     machine->AddComponent(arm1);
+    arm1->SetPositionOffset(wxPoint(50, 50));
     motor->GetSource()->AddSink(arm1->GetSink().get());
 
     auto piston1 = std::make_shared<Piston>();
+    piston1->SetPositionOffset(wxPoint(-100, 100));
     machine->AddComponent(piston1);
 
     return machine;

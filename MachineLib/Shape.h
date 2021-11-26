@@ -11,8 +11,12 @@
 #include "Component.h"
 #include "RotationSink.h"
 
+/**
+ * Class Representing a Shape Object
+ */
 class Shape : public Component {
 private:
+    /// RotationSink Object
     std::shared_ptr<RotationSink> mSink;
 
 public:
@@ -24,8 +28,6 @@ public:
     /// Assignment operator
     void operator=(const Shape &) = delete;
 
-    std::shared_ptr<RotationSink> GetSink() const { return mSink; }
-
     void AddPoint(double x, double y);
 
     void DrawImage(std::wstring imagePath);
@@ -36,7 +38,11 @@ public:
 
     void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 
-    void Update() override;
+    /**
+     * Get the sink object
+     * @return RotationSink object
+     */
+    std::shared_ptr<RotationSink> GetSink() const { return mSink; }
 };
 
 #endif //CANADIANEXPERIENCE_SHAPE_H

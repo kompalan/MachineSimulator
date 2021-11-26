@@ -10,6 +10,9 @@
 
 #include "RotationSink.h"
 
+/**
+ * Class Representing an Arm Object
+ */
 class Arm : public Component {
 private:
     /// Rotation sink
@@ -28,6 +31,10 @@ public:
 
     void Update() override;
 
+    /**
+     * Get the Sink Object Associated with it
+     * @return RotationSink Object
+     */
     std::shared_ptr<RotationSink> GetSink() const { return mSink; }
 };
 

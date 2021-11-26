@@ -8,6 +8,7 @@
 #include "MachineAFactory.h"
 #include "MachineBFactory.h"
 
+/// Base Directory for all Images
 static const std::wstring imagesDir = L"/resources/images";
 
 /**

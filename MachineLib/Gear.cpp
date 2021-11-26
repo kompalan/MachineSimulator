@@ -48,13 +48,21 @@ Gear::Gear(int teeth, int outerRadius, int innerRadius, wxColor color)
     SetColor(mColor);
 }
 
+/**
+ * Draw function. Draws the gear to the screen
+ * @param graphics wxGraphicsContext Object
+ */
 void Gear::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     SetRotation(mGearRotation + mPhase);
-//    DrawPolygon(graphics, GetMachinePosition().x + mTempPos.x, GetMachinePosition().y - mTempPos.y);
-    DrawPolygon(graphics, GetMachinePosition().x + GetPositionOffset().x, GetMachinePosition().y - GetPositionOffset().y);
+    Component::Draw(graphics);
 }
 
+/**
+ * Update function. Grabs the Rotation from
+ * the sink and sets the next source. Also calls
+ * the drive function
+ */
 void Gear::Update()
 {
     mSource->UpdateSinks(mSink->GetRotation());
@@ -67,11 +75,19 @@ void Gear::Update()
     Drive();
 }
 
+/**
+ * Adds a gear connected by meshing.
+ * @param gear Gear to add
+ */
 void Gear::AddGear(Gear* gear)
 {
     mGears.push_back(gear);
 }
 
+/**
+ * Modifies the rotation of gears that are connected
+ * to it via the meshing
+ */
 void Gear::Drive()
 {
     for(auto gear : mGears)
