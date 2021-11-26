@@ -19,6 +19,12 @@ public:
     /// Default Constructor (disabled);
     RotationSink() = delete;
 
+    /// Copy constructor (disabled)
+    RotationSink(const RotationSink &) = delete;
+
+    /// Assignment operator
+    void operator=(const RotationSink &) = delete;
+
     RotationSink(Component* dependency);
     void UpdateRotation(double rotation);
 

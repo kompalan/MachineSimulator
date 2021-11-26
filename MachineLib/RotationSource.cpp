@@ -3,7 +3,13 @@
  * @author Anurag Kompalli
  */
 
+#include "pch.h"
 #include "RotationSource.h"
+
+RotationSource::RotationSource()
+{
+
+}
 
 void RotationSource::UpdateSinks(double rotation)
 {

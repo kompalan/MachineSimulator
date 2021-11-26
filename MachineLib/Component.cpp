@@ -3,22 +3,30 @@
  * @author Anurag Kompalli
  */
 
+#include "pch.h"
 #include "Component.h"
 #include "ActualMachine.h"
 
-Component::Component()
+/**
+ * Constructor
+ */
+Component::Component() : Polygon()
 {
-    mDrawing = std::make_shared<Polygon>();
 }
 
-void Component::Update()
-{
-
-}
-
-wxPoint Component::GetPosition() const
+wxPoint Component::GetMachinePosition() const
 {
     return mMachine->GetLocation();
+}
+
+wxPoint Component::GetPositionOffset() const
+{
+    return mPosition;
+}
+
+void Component::SetPositionOffset(wxPoint position)
+{
+    mPosition = position;
 }
 
 

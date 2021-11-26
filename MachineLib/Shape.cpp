@@ -3,6 +3,7 @@
  * @author Anurag Kompalli
  */
 
+#include "pch.h"
 #include "Component.h"
 #include "Shape.h"
 
@@ -13,13 +14,13 @@ Shape::Shape()
 
 void Shape::AddPoint(double x, double y)
 {
-    GetBaseDrawing()->AddPoint(x, y);
+    Component::AddPoint(x, y);
 }
 
 void Shape::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-    GetBaseDrawing()->SetRotation(mSink->GetRotation());
-    GetBaseDrawing()->DrawPolygon(graphics, GetPosition().x + 50, GetPosition().y - 50);
+    SetRotation(mSink->GetRotation());
+    DrawPolygon(graphics, GetMachinePosition().x + GetPositionOffset().x, GetMachinePosition().y - GetPositionOffset().y);
 }
 
 void Shape::Update()
@@ -28,17 +29,17 @@ void Shape::Update()
 
 void Shape::DrawImage(std::wstring imagePath)
 {
-    GetBaseDrawing()->SetImage(imagePath);
+    SetImage(imagePath);
 }
 
 void Shape::SetColor(wxColour color)
 {
-    GetBaseDrawing()->SetColor(color);
+    Component::SetColor(color);
 }
 
 void Shape::DrawRectangle(int x, int y, int w, int h)
 {
-    GetBaseDrawing()->Rectangle(x, y, w, h);
+    Rectangle(x, y, w, h);
 }
 
 

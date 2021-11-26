@@ -3,6 +3,7 @@
  * @author Anurag Kompalli
  */
 
+#include "pch.h"
 #include "Motor.h"
 
 const static double BasicRotorRadius = 15;
@@ -16,16 +17,15 @@ Motor::Motor() : Component()
     mBackground->Rectangle(0, 0, 100, 100);
 
     double angle;
-    auto shaft = GetBaseDrawing();
     for (int i = 1; i < 30; i++)
     {
         angle = double(i) / 30 * M_PI * 2;
-        shaft->AddPoint(BasicRotorRadius * cos(angle),
+        AddPoint(BasicRotorRadius * cos(angle),
                 BasicRotorRadius * sin(angle));
     }
 
-    shaft->AddPoint(0.0, BasicRotorRadius * sin(angle));
-    shaft->AddPoint(0.0, -BasicRotorRadius * sin(angle));
+    AddPoint(0.0, BasicRotorRadius * sin(angle));
+    AddPoint(0.0, -BasicRotorRadius * sin(angle));
 
 }
 
@@ -37,11 +37,11 @@ void Motor::Update()
 void Motor::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     mBackground->SetColor(*wxBLACK);
-    mBackground->DrawPolygon(graphics, GetPosition().x, GetPosition().y);
+    mBackground->DrawPolygon(graphics, GetMachinePosition().x, GetMachinePosition().y);
 
-    GetBaseDrawing()->SetColor(*wxRED);
-    GetBaseDrawing()->SetRotation(mRotation);
-    GetBaseDrawing()->DrawPolygon(graphics, GetPosition().x + RotorOffset, GetPosition().y - RotorOffset);
+    SetColor(*wxRED);
+    SetRotation(mRotation);
+    DrawPolygon(graphics, GetMachinePosition().x + RotorOffset, GetMachinePosition().y - RotorOffset);
 }
 
 void Motor::UpdateMachine(double time)

@@ -40,16 +40,16 @@ TEST(MachineTest, MachineTime)
     // The Standin machine does not implment GetMachineTime(), so
     // this test is disabled. You should be able to enable it for your machine
 
-//    ASSERT_NEAR(123.0 / 30.0, machine->GetMachineTime(), 0.001);
-//
-//    // Speed should not matter
-//    machine->SetSpeed(2.0);
-//    ASSERT_NEAR(123.0 / 30.0, machine->GetMachineTime(), 0.001);
-//
-//    // Different frame rate
-//    machine->SetFrameRate(15);
-//    machine->SetMachineFrame(201);
-//    ASSERT_NEAR(201.0 / 15.0, machine->GetMachineTime(), 0.001);
+    ASSERT_NEAR(123.0 / 30.0, machine->GetMachineTime(), 0.001);
+
+    // Speed should not matter
+    machine->SetSpeed(2.0);
+    ASSERT_NEAR(123.0 / 30.0, machine->GetMachineTime(), 0.001);
+
+    // Different frame rate
+    machine->SetFrameRate(15);
+    machine->SetMachineFrame(201);
+    ASSERT_NEAR(201.0 / 15.0, machine->GetMachineTime(), 0.001);
 }
 
 

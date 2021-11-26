@@ -15,6 +15,14 @@ private:
     std::vector<RotationSink *> mSinks;
 
 public:
+    RotationSource();
+
+    /// Copy constructor (disabled)
+    RotationSource(const RotationSource &) = delete;
+
+    /// Assignment operator
+    void operator=(const RotationSource &) = delete;
+
     void UpdateSinks(double rotation);
     void AddSink(RotationSink* sink);
 };

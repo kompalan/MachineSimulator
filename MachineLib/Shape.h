@@ -18,6 +18,12 @@ private:
 public:
     Shape();
 
+    /// Copy constructor (disabled)
+    Shape(const Shape &) = delete;
+
+    /// Assignment operator
+    void operator=(const Shape &) = delete;
+
     std::shared_ptr<RotationSink> GetSink() const { return mSink; }
 
     void AddPoint(double x, double y);

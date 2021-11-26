@@ -22,6 +22,13 @@ private:
 
 public:
     Motor();
+
+    /// Copy constructor (disabled)
+    Motor(const Motor &) = delete;
+
+    /// Assignment operator
+    void operator=(const Motor &) = delete;
+
     void SetSpeed(double speed) { mSpeed = speed; };
     void UpdateMachine(double time);
     void Update() override;

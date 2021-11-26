@@ -12,6 +12,9 @@
 #include "RotationSink.h"
 #include "RotationSource.h"
 
+/**
+ * Class representing a gear
+ */
 class Gear : public Component {
 private:
     int mTeeth;
@@ -35,6 +38,12 @@ public:
     /// Default constructor (disabled)
     Gear() = delete;
 
+    /// Copy constructor (disabled)
+    Gear(const Gear &) = delete;
+
+    /// Assignment operator
+    void operator=(const Gear &) = delete;
+
     Gear(int teeth, int outerRadius, int innerRadius, wxColor color);
 
     void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
@@ -45,8 +54,9 @@ public:
 
     std::shared_ptr<RotationSource> GetSource() const { return mSource; }
 
-    void SetRotation(double rotation) { mGearRotation = rotation; }
-    double GetRotation() const { return mGearRotation; }
+    void SetGearRotation(double rotation) { mGearRotation = rotation; }
+
+    double GetGearRotation() const { return mGearRotation; }
 
     int GetNumTeeth() const { return mTeeth; }
 
