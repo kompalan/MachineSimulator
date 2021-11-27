@@ -10,6 +10,9 @@
 
 #include "Component.h"
 
+/**
+ * Class representing a lever
+ */
 class Lever : public Component {
 private:
 
