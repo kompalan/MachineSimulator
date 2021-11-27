@@ -65,6 +65,12 @@ public:
     void Drive();
 
     /**
+     * Makes a Sink Object and returns it
+     * @return Rotation Sink Pointer
+     */
+    RotationSink* MakeSink();
+
+    /**
      * Getter for the Sink
      * @return RotationSink object
      */

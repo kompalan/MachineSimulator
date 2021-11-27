@@ -10,6 +10,7 @@
 #include "Arm.h"
 #include "Piston.h"
 #include "Rod.h"
+#include "Lever.h"
 
 /**
  * Constructor
@@ -42,49 +43,29 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     shape->SetPositionOffset(wxPoint(50, 50));
     machine->AddComponent(shape);
 
-    // Add A Blue Gear of Outer Radius 90 and 20 teeth
-    auto gear = std::make_shared<Gear>(45, 85, 80, *wxBLUE);
-    machine->AddComponent(gear);
-    gear->SetPositionOffset(wxPoint(250, 250));
+    auto gear1 = std::make_shared<Gear>(10, 25, 20, wxColor(128, 128, 128));
+    gear1->SetPositionOffset(wxPoint(50, 50));
+    motor->GetSource()->AddSink(gear1->MakeSink());
+    machine->AddComponent(gear1);
 
-    // Constrain the Gear to the Motor via a Rotation sink
-    motor->GetSource()->AddSink(gear->GetSink().get());
-
-    // Add A Second, Smaller Black Gear with 10 teeth and outer radius 40
-    auto gear2 = std::make_shared<Gear>(20, 35, 30, *wxBLACK);
+    auto gear2 = std::make_shared<Gear>(20, 45, 40, *wxBLUE);
+    gear2->SetPositionOffset(wxPoint(50+10+12.5+46, 50));
+    gear1->AddGear(gear2.get());
     machine->AddComponent(gear2);
-    gear2->SetPositionOffset(wxPoint(250, 250));
-
-    // Constrain the Gear to the Bigger Gear via a Rotation Sink
-    gear->GetSource()->AddSink(gear2->GetSink().get());
-
-    // Add a third, red gear and constrain it to gear 2
-    auto gear3 = std::make_shared<Gear>(10, 25, 20, *wxRED);
-    machine->AddComponent(gear3);
-    gear2->AddGear(gear3.get());
-    gear3->SetPositionOffset(wxPoint(250+17.5+38, 250));
-    gear3->SetPhase(-0.1);
-
-    // Add A fourth, green gear and constrain it to gear 1
-    auto gear4 = std::make_shared<Gear>(15, 25, 20, *wxGREEN);
-    machine->AddComponent(gear4);
-    gear->AddGear(gear4.get());
-    gear4->SetPositionOffset(wxPoint(250+105, 250));
-    gear4->SetPhase(-0.1);
 
     // Add an Arm of length 100
     auto arm1 = std::make_shared<Arm>(100);
     machine->AddComponent(arm1);
-    arm1->SetPositionOffset(wxPoint(50, 50));
-    motor->GetSource()->AddSink(arm1->GetSink().get());
-
-    auto piston1 = std::make_shared<Piston>();
-    piston1->SetPositionOffset(wxPoint(-100, 100));
-    machine->AddComponent(piston1);
+    arm1->SetPositionOffset(wxPoint(50+25+45, 50));
+    gear2->GetSource()->AddSink(arm1->GetSink().get());
 
     auto rod = std::make_shared<Rod>(200);
     arm1->GetSource()->AddSink(rod->GetSink().get());
     machine->AddComponent(rod);
+
+    auto lever = std::make_shared<Lever>();
+    lever->SetPositionOffset(wxPoint(50, 200));
+    machine->AddComponent(lever);
 
     return machine;
 }

@@ -25,6 +25,7 @@ void Rod::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     SetColor(wxColor(128, 128, 128));
     auto position = mSink->GetPosition();
-
-    DrawPolygon(graphics, position.x, position.y);
+    SetPositionOffset(wxPoint(-(GetMachinePosition().x - position.x), GetMachinePosition().y - position.y));
+    SetRotation(-0.25);
+    Component::Draw(graphics);
 }

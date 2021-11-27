@@ -24,7 +24,6 @@ Gear::Gear(int teeth, int outerRadius, int innerRadius, wxColor color)
     mOuterRadius = outerRadius;
     mInnerRadius = innerRadius;
     mColor = color;
-    mSink = std::make_shared<RotationSink>(this);
     mSource = std::make_shared<RotationSource>();
 
     // Where the tooth starts in the arc
@@ -65,13 +64,12 @@ void Gear::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void Gear::Update()
 {
-    mSource->UpdateSinks(mSink->GetRotation());
-
     if(mSink != nullptr)
     {
         mGearRotation = (mSink->GetRotation());
     }
 
+    mSource->UpdateSinks(mGearRotation);
     Drive();
 }
 
@@ -92,8 +90,15 @@ void Gear::Drive()
 {
     for(auto gear : mGears)
     {
-        auto num = -((GetRotation() * (GetNumTeeth() / gear->GetNumTeeth()))) + GetPhase();
+        double num = -((GetRotation() * ((double) GetNumTeeth() / (double) gear->GetNumTeeth()))) + GetPhase();
         gear->SetGearRotation(num);
+        gear->Update();
     }
+}
+
+RotationSink* Gear::MakeSink()
+{
+    mSink = std::make_shared<RotationSink>(this);
+    return mSink.get();
 }
 
