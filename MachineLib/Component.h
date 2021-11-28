@@ -37,6 +37,7 @@ public:
     virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics);
     wxPoint GetMachinePosition() const;
     wxPoint GetPositionOffset() const;
+    wxPoint GetAbsolutePosition() const;
     void SetPositionOffset(wxPoint position);
 
     /**

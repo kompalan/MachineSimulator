@@ -20,6 +20,7 @@ RodEndSink::RodEndSink(Component* dependency) : mDependentComponent(dependency)
 void RodEndSink::UpdatePosition(wxPoint position)
 {
     mPosition = position;
+    mDependentComponent->Update();
 }
 
 

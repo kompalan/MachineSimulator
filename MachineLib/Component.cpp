@@ -50,4 +50,9 @@ void Component::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     DrawPolygon(graphics, GetMachinePosition().x + mPosition.x, GetMachinePosition().y - mPosition.y);
 }
 
+wxPoint Component::GetAbsolutePosition() const
+{
+    return wxPoint(GetMachinePosition().x + mPosition.x, GetMachinePosition().y - mPosition.y);
+}
+
 

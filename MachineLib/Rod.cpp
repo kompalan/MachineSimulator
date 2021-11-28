@@ -4,6 +4,7 @@
  */
 
 #include "Rod.h"
+#include "LeverEndSource.h"
 
 /**
  * Constructor
@@ -13,7 +14,7 @@ Rod::Rod(double length)
 {
     mLength = length;
     mSink = std::make_shared<RodEndSink>(this);
-
+    mSource = std::make_shared<LeverEndSource>();
     Rectangle(0, 5, mLength, 10);
 }
 
@@ -26,6 +27,10 @@ void Rod::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     SetColor(wxColor(128, 128, 128));
     auto position = mSink->GetPosition();
     SetPositionOffset(wxPoint(-(GetMachinePosition().x - position.x), GetMachinePosition().y - position.y));
-    SetRotation(-0.25);
     Component::Draw(graphics);
+}
+
+void Rod::Update()
+{
+    mSource->UpdateSinks(this);
 }

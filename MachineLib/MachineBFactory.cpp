@@ -11,6 +11,7 @@
 #include "Piston.h"
 #include "Arm.h"
 #include "Gear.h"
+#include "LeverEndSource.h"
 
 /**
  * Constructor
@@ -89,6 +90,8 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
 
     auto lever = std::make_shared<Lever>();
     lever->SetPositionOffset(wxPoint(-200, 200));
+    rod->GetSource()->AddSink(lever->GetSink().get());
+
     machine->AddComponent(lever);
 
     return machine;

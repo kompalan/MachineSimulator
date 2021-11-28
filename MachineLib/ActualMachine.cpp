@@ -45,7 +45,7 @@ void ActualMachine::SetLocation(wxPoint location)
 void ActualMachine::SetMachineFrame(int frame)
 {
     mCurrentFrame = frame;
-    mTime = mCurrentFrame / mFrameRate;
+    mTime = fmax(0, mCurrentFrame / mFrameRate);
     mMotor->UpdateMachine(mTime);
 }
 
