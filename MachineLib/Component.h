@@ -18,7 +18,7 @@ class ActualMachine;
 class Component : public Polygon {
 private:
     /// Position of the Component (offset from root location)
-    wxPoint mPosition;
+    wxPoint mPosition = wxPoint(0, 0);
 
     /// Machine Pointer
     ActualMachine* mMachine;

@@ -19,16 +19,16 @@ class Component;
 class ActualMachine {
 private:
     /// Machine Time
-    double mTime;
+    double mTime = 0;
 
     /// Absolute Machine Location
     wxPoint mLocation = wxPoint(0, 0);
 
     /// Framerate of the Machine
-    double mFrameRate;
+    double mFrameRate = 0;
 
     /// Current Frame that we are on
-    int mCurrentFrame;
+    int mCurrentFrame = 0;
 
     /// All Components in the machine (used for drawing)
     std::vector<std::shared_ptr<Component>> mComponents;
@@ -56,7 +56,6 @@ public:
     /**
      * Sets the root of the machine. Initial Update Goes
      * to this Motor
-     * TODO: Should this bee a list?
      * @param motor Motor to set as root
      */
     void SetRootMotor(std::shared_ptr<Motor> motor) { mMotor = motor; }

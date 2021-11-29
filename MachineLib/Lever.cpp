@@ -13,8 +13,9 @@ Lever::Lever()
 {
     mSink = std::make_shared<LeverEndSink>(this);
     mRotationSource = std::make_shared<RotationSource>();
+    mRodSource = std::make_shared<RodEndSource>();
 
-    Rectangle(-200, 0, 400, 50);
+    Rectangle(-247, -5, 450, 50);
 }
 
 /**
@@ -28,11 +29,17 @@ void Lever::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     Component::Draw(graphics);
 }
 
+/**
+ * Update function. Takes the Sinks rod object
+ * and does negotiation calculations to figure out the rotation
+ * of the rod and the lever.
+ */
 void Lever::Update()
 {
     Rod* rod = mSink->GetRod();
     wxPoint rodPos = rod->GetAbsolutePosition();
-    wxPoint leverPos = GetAbsolutePosition();
+    wxPoint leverPosPre = GetAbsolutePosition();
+    wxPoint leverPos = wxPoint(leverPosPre.x - 10, leverPosPre.y - 5);
 
     double a = 200;
     double b = rod->GetLength();
@@ -50,15 +57,21 @@ void Lever::Update()
     double theta = delta - alpha;
 
     double rotations = theta / (2 * M_PI);
-    rod->SetRotation(-rotations - 0.01);
+    rod->SetRotation(-rotations);
 
-    double x3 = rodPos.x + (b * cos(-theta));
-    double y3 = rodPos.y + (b * sin(-theta));
+    double x3 = (rodPos.x) + (b * cos(-theta));
+    double y3 = (rodPos.y) + (b * sin(-theta));
 
-    double phi = atan2((y3 - leverPos.y), (x3 - leverPos.x));
+    double phi = atan2((y3 - (leverPos.y)), (x3 - (leverPos.x)));
     double leverRotations = phi / (2*M_PI);
-    SetRotation(leverRotations + 0.01);
+    leverRotations += 0.02;
+    SetRotation(leverRotations);
 
-    mRotationSource->UpdateSinks(leverRotations+0.01);
+    mRotationSource->UpdateSinks(leverRotations);
+
+    double rodConnectionX = ((((leverPos.x) - (a * cos(-phi)))));
+    double rodConnectionY = ((leverPos.y) - (a * sin(phi)));
+
+    mRodSource->UpdateSinks(wxPoint(rodConnectionX, rodConnectionY - 50));
 }
 

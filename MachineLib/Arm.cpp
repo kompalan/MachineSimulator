@@ -15,7 +15,7 @@ Arm::Arm(double length) : Component()
     mLength = length;
     mSource = std::make_shared<RodEndSource>();
 
-    Rectangle(-10, 10, mLength, 20);
+    Rectangle(-5, 10, mLength, 20);
 }
 
 /**

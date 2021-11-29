@@ -18,16 +18,16 @@
 class Gear : public Component {
 private:
     /// Teeth of the Gear
-    int mTeeth;
+    int mTeeth = 0;
 
     /// Outer Radius of the Gear
-    int mOuterRadius;
+    int mOuterRadius = 0;
 
     /// Inner Radius of the Gear
-    int mInnerRadius;
+    int mInnerRadius = 0;
 
     /// Color of the Gear
-    wxColor mColor;
+    wxColor mColor = *wxBLACK;
 
     /// Gear sink object
     std::shared_ptr<RotationSink> mSink;

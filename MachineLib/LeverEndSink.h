@@ -12,6 +12,9 @@
 
 class Rod;
 
+/**
+ * Class Representing a LeverEnd
+ */
 class LeverEndSink {
 private:
     /// Component Sink is Tied To
@@ -32,9 +35,13 @@ public:
 
     LeverEndSink(Component* dependency);
 
-    Rod* GetRod() const { return mRod; }
-
     void UpdateRod(Rod* rod);
+
+    /**
+     * Get the Rod object
+     * @return Rod object
+     */
+    Rod* GetRod() const { return mRod; }
 };
 
 #endif //CANADIANEXPERIENCE_LEVERENDSINK_H

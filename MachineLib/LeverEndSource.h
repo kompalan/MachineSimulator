@@ -11,6 +11,9 @@
 #include "LeverEndSink.h"
 #include "Rod.h"
 
+/**
+ * Class representing a Lever Source
+ */
 class LeverEndSource {
 private:
     /// Sinks associated with this source

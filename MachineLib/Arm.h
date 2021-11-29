@@ -23,7 +23,7 @@ private:
     std::shared_ptr<RodEndSource> mSource;
 
     /// Length of the Arm
-    double mLength;
+    double mLength = 0;
 
 public:
     Arm(double length);

@@ -13,6 +13,7 @@
 #include "Lever.h"
 #include "LeverEndSource.h"
 #include "LeverEndSink.h"
+#include "PistonSource.h"
 
 /**
  * Constructor
@@ -67,17 +68,17 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     auto rod = std::make_shared<Rod>(150);
     arm1->GetSource()->AddSink(rod->GetSink().get());
     rod->SetRotation(0);
-
+    rod->Update();
 
     auto lever = std::make_shared<Lever>();
-    lever->SetPositionOffset(wxPoint(-50, 200));
+    lever->SetPositionOffset(wxPoint(-15, 200));
     lever->SetRotation(0);
     rod->GetSource()->AddSink(lever->GetSink().get());
 
 
     auto flag = std::make_shared<Shape>();
-    flag->SetPositionOffset(wxPoint(-70, 220));
-    flag->DrawRectangle(-20, 0, 40, 100);
+    flag->SetPositionOffset(wxPoint(-20, 240));
+    flag->DrawRectangle(0, 0, -70, 120);
     flag->DrawImage(L"images/flag.png");
     lever->GetRotationSource()->AddSink(flag->GetSink().get());
 
@@ -85,17 +86,25 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     machine->AddComponent(lever);
     machine->AddComponent(rod);
 
+    auto rod2 = std::make_shared<Rod>(100);
+    lever->GetRodSource()->AddSink(rod2->GetSink().get());
+    rod2->SetRotation(0);
+    machine->AddComponent(rod2);
 
-//    auto holder = std::make_shared<Shape>();
-//    holder->DrawRectangle(-75, 0, 50, 250);
-//    holder->DrawImage(L"images/column.png");
-//    machine->AddComponent(holder);
+    auto piston = std::make_shared<Piston>();
+    piston->SetPositionOffset(wxPoint(-185, 100));
+    rod2->GetPistonSource()->AddSink(piston->GetSink().get());
+    machine->AddComponent(piston);
+
+    auto holder = std::make_shared<Shape>();
+    holder->DrawRectangle(-70, 0, 55, 250);
+    holder->DrawImage(L"images/column.png");
+    machine->AddComponent(holder);
 
     auto cylinder = std::make_shared<Shape>();
-    cylinder->DrawRectangle(-200, 0, 60, 150);
+    cylinder->DrawRectangle(-215, 0, 60, 150);
     cylinder->DrawImage(L"images/cylinder.png");
     machine->AddComponent(cylinder);
 
-    machine->SetMachineFrame(0);
     return machine;
 }

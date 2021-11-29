@@ -11,6 +11,8 @@
 #include "Component.h"
 #include "RodEndSink.h"
 
+class PistonSource;
+
 class LeverEndSource;
 
 /**
@@ -26,6 +28,9 @@ private:
 
     /// LeverEndSource Object
     std::shared_ptr<LeverEndSource> mSource;
+
+    /// PistonSource Object
+    std::shared_ptr<PistonSource> mPistonSource;
 
 public:
     Rod(double length);
@@ -54,6 +59,12 @@ public:
      * @return LeverEndSource object
      */
     std::shared_ptr<LeverEndSource> GetSource() const { return mSource; }
+
+    /**
+     * Gets the Piston Source
+     * @return PistonSource object
+     */
+    std::shared_ptr<PistonSource> GetPistonSource() const { return mPistonSource; }
 
     /**
      * Get the Rod Length

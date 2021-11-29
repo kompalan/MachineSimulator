@@ -39,10 +39,22 @@ public:
 
     void Update() override;
 
+    /**
+     * Getter for LeverEnd Sink object
+     * @return LeverEndSink object
+     */
     std::shared_ptr<LeverEndSink> GetSink() const { return mSink; }
 
+    /**
+     * Getter for Rotation Source Object
+     * @return RotationSource Object
+     */
     std::shared_ptr<RotationSource> GetRotationSource() const { return mRotationSource; }
 
+    /**
+     * Getter for Rod Source Object
+     * @return RodSource Object
+     */
     std::shared_ptr<RodEndSource> GetRodSource() const { return mRodSource; }
 };
 
