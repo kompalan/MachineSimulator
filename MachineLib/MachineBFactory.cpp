@@ -88,7 +88,7 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     arm1->GetSource()->AddSink(rod->GetSink().get());
     machine->AddComponent(rod);
 
-    auto lever = std::make_shared<Lever>();
+    auto lever = std::make_shared<Lever>(400);
     lever->SetPositionOffset(wxPoint(-200, 200));
     rod->GetSource()->AddSink(lever->GetSink().get());
 

@@ -68,13 +68,11 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     auto rod = std::make_shared<Rod>(150);
     arm1->GetSource()->AddSink(rod->GetSink().get());
     rod->SetRotation(0);
-    rod->Update();
 
-    auto lever = std::make_shared<Lever>();
-    lever->SetPositionOffset(wxPoint(-15, 200));
+    auto lever = std::make_shared<Lever>(450);
+    lever->SetPositionOffset(wxPoint(-45, 220));
     lever->SetRotation(0);
     rod->GetSource()->AddSink(lever->GetSink().get());
-
 
     auto flag = std::make_shared<Shape>();
     flag->SetPositionOffset(wxPoint(-20, 240));
@@ -88,6 +86,7 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
 
     auto rod2 = std::make_shared<Rod>(100);
     lever->GetRodSource()->AddSink(rod2->GetSink().get());
+    rod2->SetPositionOffset(lever->GetPositionOffset());
     rod2->SetRotation(0);
     machine->AddComponent(rod2);
 

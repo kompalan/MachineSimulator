@@ -26,14 +26,19 @@ private:
 
     /// Rod Source
     std::shared_ptr<RodEndSource> mRodSource;
+
+    /// Length of Lever
+    double mLength;
 public:
-    Lever();
+    Lever() = delete;
 
     /// Copy constructor (disabled)
     Lever(const Lever &) = delete;
 
     /// Assignment operator
     void operator=(const Lever &) = delete;
+
+    Lever(double length);
 
     void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 

@@ -9,13 +9,14 @@
 /**
  * Constructor
  */
-Lever::Lever()
+Lever::Lever(double length)
 {
+    mLength = length;
     mSink = std::make_shared<LeverEndSink>(this);
     mRotationSource = std::make_shared<RotationSource>();
     mRodSource = std::make_shared<RodEndSource>();
 
-    Rectangle(-247, -5, 450, 50);
+    Rectangle(-mLength/2, 25, mLength, 50);
 }
 
 /**
@@ -41,7 +42,7 @@ void Lever::Update()
     wxPoint leverPosPre = GetAbsolutePosition();
     wxPoint leverPos = wxPoint(leverPosPre.x - 10, leverPosPre.y - 5);
 
-    double a = 200;
+    double a = mLength/2;
     double b = rod->GetLength();
 
     double squaredY = pow((leverPos.y - rodPos.y), 2);
@@ -56,15 +57,14 @@ void Lever::Update()
 
     double theta = delta - alpha;
 
-    double rotations = theta / (2 * M_PI);
-    rod->SetRotation(-rotations);
+    double rotations = -theta / (2 * M_PI);
+    rod->SetRotation(rotations);
 
     double x3 = (rodPos.x) + (b * cos(-theta));
     double y3 = (rodPos.y) + (b * sin(-theta));
 
     double phi = atan2((y3 - (leverPos.y)), (x3 - (leverPos.x)));
     double leverRotations = phi / (2*M_PI);
-    leverRotations += 0.02;
     SetRotation(leverRotations);
 
     mRotationSource->UpdateSinks(leverRotations);
@@ -72,6 +72,6 @@ void Lever::Update()
     double rodConnectionX = ((((leverPos.x) - (a * cos(-phi)))));
     double rodConnectionY = ((leverPos.y) - (a * sin(phi)));
 
-    mRodSource->UpdateSinks(wxPoint(rodConnectionX, rodConnectionY - 50));
+    mRodSource->UpdateSinks(wxPoint(rodConnectionX + 10, rodConnectionY));
 }
 

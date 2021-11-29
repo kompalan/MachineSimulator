@@ -38,7 +38,9 @@ void Piston::Update()
     auto position = rod->GetAbsolutePosition();
 
     double diffX = abs(GetAbsolutePosition().x - position.x);
+
     double alpha = asin((diffX)/(rod->GetLength()));
+
     double beta = (M_PI/2) - alpha;
 
     double rotations = (beta / (2 * M_PI));
