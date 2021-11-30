@@ -39,8 +39,7 @@ void Lever::Update()
 {
     Rod* rod = mSink->GetRod();
     wxPoint rodPos = rod->GetAbsolutePosition();
-    wxPoint leverPosPre = GetAbsolutePosition();
-    wxPoint leverPos = wxPoint(leverPosPre.x - 10, leverPosPre.y - 5);
+    wxPoint leverPos = GetAbsolutePosition();
 
     double a = mLength/2;
     double b = rod->GetLength();
@@ -58,7 +57,7 @@ void Lever::Update()
     double theta = delta - alpha;
 
     double rotations = -theta / (2 * M_PI);
-    rod->SetRotation(rotations);
+    rod->SetRotation(rotations - 0.015);
 
     double x3 = (rodPos.x) + (b * cos(-theta));
     double y3 = (rodPos.y) + (b * sin(-theta));
