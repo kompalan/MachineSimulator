@@ -25,8 +25,10 @@ private:
     /// Length of the Arm
     double mLength = 0;
 
+    /// Image of the Arm
+    std::wstring mImagesPath;
 public:
-    Arm(double length);
+    Arm(double length, const std::wstring &imagePath);
 
     /// Default Constructor (disabled)
     Arm() = delete;

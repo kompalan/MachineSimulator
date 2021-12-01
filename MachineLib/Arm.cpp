@@ -9,11 +9,12 @@
  * Constructor
  * @param length Length of Arm
  */
-Arm::Arm(double length) : Component()
+Arm::Arm(double length, const std::wstring &imagePath) : Component()
 {
     mSink = std::make_shared<RotationSink>(this);
     mLength = length;
     mSource = std::make_shared<RodEndSource>();
+    mImagesPath = imagePath;
 
     Rectangle(-5, 10, mLength, 20);
 }
@@ -25,7 +26,7 @@ Arm::Arm(double length) : Component()
  */
 void Arm::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-    SetImage(L"images/arm1.png");
+    SetImage(mImagesPath);
     SetRotation(mSink->GetRotation());
     Component::Draw(graphics);
 }

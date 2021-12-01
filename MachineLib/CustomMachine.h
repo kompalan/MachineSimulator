@@ -22,8 +22,11 @@ private:
     /// Pointer to the Current Machine
     std::shared_ptr<ActualMachine> mMachine;
 
+    /// Image Directory
+    std::wstring mImagesDir;
+
 public:
-    CustomMachine();
+    CustomMachine(const std::wstring &imagesDir);
 
     /// Copy constructor (disabled)
     CustomMachine(const CustomMachine &) = delete;

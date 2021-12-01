@@ -143,3 +143,11 @@ void Actor::GetKeyframe()
         drawable->GetKeyframe();
     }
 }
+
+void Actor::SetFrame(int frame)
+{
+    for(auto drawable : mDrawablesInOrder)
+    {
+        drawable->SetFrame(frame);
+    }
+}

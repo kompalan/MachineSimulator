@@ -19,8 +19,10 @@ private:
     /// Piston Sink object
     std::shared_ptr<PistonSink> mSink;
 
+    /// Image path
+    std::wstring mImagePath;
 public:
-    Piston();
+    Piston(const std::wstring &imagePath);
     void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
     void Update() override;
 

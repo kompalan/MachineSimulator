@@ -9,12 +9,13 @@
 /**
  * Constructor
  */
-Lever::Lever(double length)
+Lever::Lever(double length, const std::wstring &imagePath)
 {
     mLength = length;
     mSink = std::make_shared<LeverEndSink>(this);
     mRotationSource = std::make_shared<RotationSource>();
     mRodSource = std::make_shared<RodEndSource>();
+    mImagePath = imagePath;
 
     Rectangle(-mLength/2, 25, mLength, 50);
 }
@@ -26,7 +27,7 @@ Lever::Lever(double length)
  */
 void Lever::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-    SetImage(L"images/lever.png");
+    SetImage(mImagePath);
     Component::Draw(graphics);
 }
 

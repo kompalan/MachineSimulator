@@ -136,6 +136,7 @@ public:
     virtual void SetKeyframe();
     virtual void GetKeyframe();
 
+    virtual void SetFrame(int currFrame) {};
     /**
      * The angle animation channel
      * @return Pointer to animation channel

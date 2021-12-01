@@ -122,6 +122,7 @@ public:
 
     void SetKeyframe();
     void GetKeyframe();
+    void SetFrame(int frame);
 
     /**
      * The position animation channel

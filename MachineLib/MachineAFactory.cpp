@@ -42,7 +42,7 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     // Add A Shape
     auto shape = std::make_shared<Shape>();
     shape->DrawRectangle(-400, 115, 600, 70);
-    shape->DrawImage(L"images/base.png");
+    shape->DrawImage(mImagesDir + L"/base.png");
     shape->SetPositionOffset(wxPoint(50, 50));
     machine->AddComponent(shape);
 
@@ -59,7 +59,7 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     machine->AddComponent(gear2);
 
     // Add an Arm of length 100
-    auto arm1 = std::make_shared<Arm>(70);
+    auto arm1 = std::make_shared<Arm>(70, mImagesDir + L"/arm1.png");
     machine->AddComponent(arm1);
     arm1->SetPositionOffset(wxPoint(50+25+45, 50));
     arm1->SetRotation(0);
@@ -69,7 +69,7 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     arm1->GetSource()->AddSink(rod->GetSink().get());
     rod->SetRotation(0);
 
-    auto lever = std::make_shared<Lever>(450);
+    auto lever = std::make_shared<Lever>(450, mImagesDir + L"/lever.png");
     lever->SetPositionOffset(wxPoint(-45, 220));
     lever->SetRotation(0);
     rod->GetSource()->AddSink(lever->GetSink().get());
@@ -77,7 +77,7 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     auto flag = std::make_shared<Shape>();
     flag->SetPositionOffset(wxPoint(-20, 240));
     flag->DrawRectangle(0, 0, -70, 120);
-    flag->DrawImage(L"images/flag.png");
+    flag->DrawImage(mImagesDir + L"/flag.png");
     lever->GetRotationSource()->AddSink(flag->GetSink().get());
 
     machine->AddComponent(flag);
@@ -90,19 +90,19 @@ std::shared_ptr<ActualMachine> MachineAFactory::Create()
     rod2->SetRotation(0);
     machine->AddComponent(rod2);
 
-    auto piston = std::make_shared<Piston>();
+    auto piston = std::make_shared<Piston>(mImagesDir + L"/piston.png");
     piston->SetPositionOffset(wxPoint(-185, 100));
     rod2->GetPistonSource()->AddSink(piston->GetSink().get());
     machine->AddComponent(piston);
 
     auto holder = std::make_shared<Shape>();
     holder->DrawRectangle(-70, 0, 55, 250);
-    holder->DrawImage(L"images/column.png");
+    holder->DrawImage(mImagesDir + L"/column.png");
     machine->AddComponent(holder);
 
     auto cylinder = std::make_shared<Shape>();
     cylinder->DrawRectangle(-215, 0, 60, 150);
-    cylinder->DrawImage(L"images/cylinder.png");
+    cylinder->DrawImage(mImagesDir + L"/cylinder.png");
     machine->AddComponent(cylinder);
 
     return machine;

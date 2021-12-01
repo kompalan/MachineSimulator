@@ -9,7 +9,7 @@
 #include "PolyDrawable.h"
 #include "ImageDrawable.h"
 #include "HeadTop.h"
-
+#include "MachineDrawable.h"
 
 using namespace std;
 
@@ -63,6 +63,9 @@ std::shared_ptr<Actor> SpartyFactory::Create(std::wstring imagesDir)
     headt->GetRightEye()->SetCenter(wxPoint(17, 16));
     headt->SetInterocularDistance(30);
 
+    auto machine = make_shared<MachineDrawable>(L"Machine", imagesDir);
+
+    actor->AddDrawable(machine);
     actor->AddDrawable(lleg);
     actor->AddDrawable(rleg);
     actor->AddDrawable(torso);
@@ -70,6 +73,7 @@ std::shared_ptr<Actor> SpartyFactory::Create(std::wstring imagesDir)
     actor->AddDrawable(rarm);
     actor->AddDrawable(headb);
     actor->AddDrawable(headt);
+
 
     return actor;
 }

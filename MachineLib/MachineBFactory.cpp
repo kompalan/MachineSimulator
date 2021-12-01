@@ -75,12 +75,12 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     gear4->SetPhase(-0.1);
 
     // Add an Arm of length 100
-    auto arm1 = std::make_shared<Arm>(100);
+    auto arm1 = std::make_shared<Arm>(100, mImagesDir + L"/arm1.png");
     machine->AddComponent(arm1);
     arm1->SetPositionOffset(wxPoint(50, 50));
     motor->GetSource()->AddSink(arm1->GetSink().get());
 
-    auto piston1 = std::make_shared<Piston>();
+    auto piston1 = std::make_shared<Piston>(mImagesDir + L"/piston.png");
     piston1->SetPositionOffset(wxPoint(-100, 100));
     machine->AddComponent(piston1);
 
@@ -88,7 +88,7 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     arm1->GetSource()->AddSink(rod->GetSink().get());
     machine->AddComponent(rod);
 
-    auto lever = std::make_shared<Lever>(400);
+    auto lever = std::make_shared<Lever>(400, mImagesDir + L"lever.png");
     lever->SetPositionOffset(wxPoint(-200, 200));
     rod->GetSource()->AddSink(lever->GetSink().get());
 

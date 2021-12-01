@@ -11,9 +11,10 @@
 /**
  * Constructor
  */
-Piston::Piston()
+Piston::Piston(const std::wstring &imagePath)
 {
     mSink = std::make_shared<PistonSink>(this);
+    mImagePath = imagePath;
     Rectangle(-25, -10, 50, 100);
 }
 
@@ -24,7 +25,7 @@ Piston::Piston()
  */
 void Piston::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-    SetImage(L"images/piston.png");
+    SetImage(mImagePath);
     Component::Draw(graphics);
 }
 

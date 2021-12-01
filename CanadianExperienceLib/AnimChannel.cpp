@@ -139,6 +139,8 @@ void AnimChannel::SetFrame(int currFrame)
         // We are only using keyframe 2
         mKeyframes[mKeyframe2]->UseOnly();
     }
+
+
 }
 
 /** Clear the current keyframe.

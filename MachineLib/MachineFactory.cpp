@@ -29,7 +29,7 @@ MachineFactory::MachineFactory(std::wstring imagesDir) : mImagesDir(imagesDir)
  */
 std::shared_ptr<Machine> MachineFactory::CreateMachine()
 {
-    return std::make_shared<CustomMachine>();
+    return std::make_shared<CustomMachine>(mImagesDir);
 }
 
 

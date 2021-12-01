@@ -8,6 +8,8 @@
 #ifndef CANADIANEXPERIENCE_TIMELINE_H
 #define CANADIANEXPERIENCE_TIMELINE_H
 
+#include <machine-api.h>
+
 class AnimChannel;
 
 /**
@@ -27,7 +29,6 @@ private:
 
     /// List of all animation channels
     std::vector<AnimChannel *> mChannels;
-
 public:
     Timeline();
 

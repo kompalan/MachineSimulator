@@ -29,6 +29,10 @@ private:
 
     /// Length of Lever
     double mLength;
+
+    /// Image Path
+    std::wstring mImagePath;
+
 public:
     Lever() = delete;
 
@@ -38,7 +42,7 @@ public:
     /// Assignment operator
     void operator=(const Lever &) = delete;
 
-    Lever(double length);
+    Lever(double length, const std::wstring &imagePath);
 
     void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
 

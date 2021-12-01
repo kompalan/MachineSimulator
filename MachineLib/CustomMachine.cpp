@@ -8,15 +8,13 @@
 #include "MachineAFactory.h"
 #include "MachineBFactory.h"
 
-/// Base Directory for all Images
-static const std::wstring imagesDir = L"/resources/images";
-
 /**
  * Constructor. Creates a Machine A and
  * Sets it to the current machine
  */
-CustomMachine::CustomMachine() : Machine()
+CustomMachine::CustomMachine(const std::wstring &imagesDir) : Machine()
 {
+    mImagesDir = imagesDir;
     MachineAFactory machineA(imagesDir);
     mMachine = machineA.Create();
 }
@@ -34,19 +32,19 @@ void CustomMachine::SetMachineNumber(int machine)
     {
         case 0:
         {
-            MachineAFactory machineA(imagesDir);
+            MachineAFactory machineA(mImagesDir);
             mMachine = machineA.Create();
             break;
         }
         case 1:
         {
-            MachineBFactory machineB(imagesDir);
+            MachineBFactory machineB(mImagesDir);
             mMachine = machineB.Create();
             break;
         }
         default:
         {
-            MachineAFactory machineDefault(imagesDir);
+            MachineAFactory machineDefault(mImagesDir);
             mMachine = machineDefault.Create();
             break;
         }

@@ -12,7 +12,6 @@
  */
 Timeline::Timeline()
 {
-
 }
 
 /**

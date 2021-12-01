@@ -35,6 +35,7 @@ void Picture::SetAnimationTime(double time)
     for (auto actor : mActors)
     {
         actor->GetKeyframe();
+        actor->SetFrame(mTimeline.GetCurrentFrame());
     }
 }
 
