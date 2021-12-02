@@ -10,6 +10,7 @@
 
 /**
  * Constructor
+ * @param imagePath Path to Piston Image
  */
 Piston::Piston(const std::wstring &imagePath)
 {

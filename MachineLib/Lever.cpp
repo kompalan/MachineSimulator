@@ -3,11 +3,21 @@
  * @author Anurag Kompalli
  */
 
+#include "pch.h"
 #include "Lever.h"
 #include "Rod.h"
 
+/// Rotation correction because the edge of the rectangle is
+/// not the edge of the lever
+const double RotationCorrection = 0.015;
+
+/// Position offset between edge of rectangle and edge of lever
+const double PositionOffset = 10;
+
 /**
  * Constructor
+ * @param length Length of Lever
+ * @param imagePath Path to Lever Image
  */
 Lever::Lever(double length, const std::wstring &imagePath)
 {
@@ -38,6 +48,9 @@ void Lever::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void Lever::Update()
 {
+    // For figure pertaining to this calculation: refer to
+    // https://facweb.cse.msu.edu/cbowen/cse335/project2-fs21/lever.php
+
     Rod* rod = mSink->GetRod();
     wxPoint rodPos = rod->GetAbsolutePosition();
     wxPoint leverPos = GetAbsolutePosition();
@@ -50,28 +63,39 @@ void Lever::Update()
 
     double c = sqrt(squaredY + squaredX);
 
+    // calculate delta, which is the arm horizontal to vector
+    // pointing to middle of lever angle
     double delta = atan2(-(leverPos.y - rodPos.y), (leverPos.x - rodPos.x));
 
     double numerator = (pow(b, 2)) + (pow(c, 2)) - (pow(a, 2));
+
+    // calculate alpha, which is the angle between the rod and the
+    // vector pointing to the middle of lever
     double alpha = acos(((numerator)/ (2*b*c)));
 
+    // Therefore, the amount we need to rotate is the difference
     double theta = delta - alpha;
 
-    double rotations = -theta / (2 * M_PI);
-    rod->SetRotation(rotations - 0.015);
+    // Convert to rotations
+    double rotations = (-theta / (2 * M_PI)) - RotationCorrection;
+    rod->SetRotation(rotations);
 
+    // Get the end of the lever based on theta
     double x3 = (rodPos.x) + (b * cos(-theta));
     double y3 = (rodPos.y) + (b * sin(-theta));
 
+    // Use x3 and y3 to calculate how much the lever should rotate
     double phi = atan2((y3 - (leverPos.y)), (x3 - (leverPos.x)));
-    double leverRotations = phi / (2*M_PI);
+    double leverRotations = phi / (2 * M_PI);
     SetRotation(leverRotations);
 
     mRotationSource->UpdateSinks(leverRotations);
 
-    double rodConnectionX = ((((leverPos.x) - (a * cos(-phi)))));
+    // Use this new information about phi to calculate the other
+    // end of the lever
+    double rodConnectionX = ((leverPos.x) - (a * cos(-phi))) + PositionOffset;
     double rodConnectionY = ((leverPos.y) - (a * sin(phi)));
 
-    mRodSource->UpdateSinks(wxPoint(rodConnectionX + 10, rodConnectionY));
+    mRodSource->UpdateSinks(wxPoint(rodConnectionX, rodConnectionY));
 }
 

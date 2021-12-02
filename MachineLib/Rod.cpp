@@ -3,6 +3,7 @@
  * @author Anurag Kompalli
  */
 
+#include "pch.h"
 #include "Rod.h"
 #include "LeverEndSource.h"
 #include "PistonSource.h"

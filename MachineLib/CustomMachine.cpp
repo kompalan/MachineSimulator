@@ -11,10 +11,12 @@
 /**
  * Constructor. Creates a Machine A and
  * Sets it to the current machine
+ * @param imagesDir Path to images
  */
 CustomMachine::CustomMachine(const std::wstring &imagesDir) : Machine()
 {
     mImagesDir = imagesDir;
+
     MachineAFactory machineA(imagesDir);
     mMachine = machineA.Create();
 }

@@ -3,11 +3,17 @@
  * @author Anurag Kompalli
  */
 
+#include "pch.h"
 #include "Arm.h"
+
+/// Position Correction for Arm because rectangle does not
+/// end at arm holder
+const double ArmCorrection = 10;
 
 /**
  * Constructor
  * @param length Length of Arm
+ * @param imagePath Path to arm image
  */
 Arm::Arm(double length, const std::wstring &imagePath) : Component()
 {
@@ -36,8 +42,10 @@ void Arm::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void Arm::Update()
 {
-    double x = (GetMachinePosition().x + GetPositionOffset().x) + (mLength-10) * cos(mSink->GetRotation() * M_PI * 2);
-    double y = (GetMachinePosition().y - GetPositionOffset().y) + (mLength-10) * sin(mSink->GetRotation() * M_PI * 2);
+    // Get end of the Arm by finding the Absolute position + the length
+    // and using cos and sin to get x and y components
+    double x = GetAbsolutePosition().x + (mLength-ArmCorrection) * cos(mSink->GetRotation() * M_PI * 2);
+    double y = GetAbsolutePosition().y + (mLength-ArmCorrection) * sin(mSink->GetRotation() * M_PI * 2);
     mSource->UpdateSinks(wxPoint((int)x, (int)y));
 }
 

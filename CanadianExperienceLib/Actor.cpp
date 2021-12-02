@@ -144,6 +144,10 @@ void Actor::GetKeyframe()
     }
 }
 
+/**
+ * Set A Frame on the Actor
+ * @param frame Frame to set
+ */
 void Actor::SetFrame(int frame)
 {
     for(auto drawable : mDrawablesInOrder)

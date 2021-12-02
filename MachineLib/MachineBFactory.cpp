@@ -40,7 +40,7 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     // Add A Shape
     auto shape = std::make_shared<Shape>();
     shape->DrawRectangle(-300, 115, 500, 70);
-    shape->DrawImage(L"images/base.png");
+    shape->DrawImage(mImagesDir + L"/base.png");
     shape->SetPositionOffset(wxPoint(50, 50));
     machine->AddComponent(shape);
 
@@ -88,7 +88,7 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     arm1->GetSource()->AddSink(rod->GetSink().get());
     machine->AddComponent(rod);
 
-    auto lever = std::make_shared<Lever>(400, mImagesDir + L"lever.png");
+    auto lever = std::make_shared<Lever>(400, mImagesDir + L"/lever.png");
     lever->SetPositionOffset(wxPoint(-200, 200));
     rod->GetSource()->AddSink(lever->GetSink().get());
 

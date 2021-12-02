@@ -136,7 +136,12 @@ public:
     virtual void SetKeyframe();
     virtual void GetKeyframe();
 
+    /**
+     * Set a frame for the Drawable
+     * @param currFrame Frame to set
+     */
     virtual void SetFrame(int currFrame) {};
+
     /**
      * The angle animation channel
      * @return Pointer to animation channel
