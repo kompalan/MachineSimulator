@@ -25,6 +25,7 @@ Gear::Gear(int teeth, int outerRadius, int innerRadius, wxColor color)
     mInnerRadius = innerRadius;
     mColor = color;
     mSource = std::make_shared<RotationSource>();
+    mHub = std::make_shared<Polygon>();
 
     // Where the tooth starts in the arc
     double toothStart = 1.0 - ToothWidth - ToothSlope * 2;
@@ -45,7 +46,17 @@ Gear::Gear(int teeth, int outerRadius, int innerRadius, wxColor color)
     }
 
     SetColor(mColor);
+
+    double hubWidth = 0.3*mInnerRadius;
+
+    for (int j = 0; j < 1000; j++)
+    {
+        double angle1 = double(j) / 1000 * PI2;
+        mHub->AddPoint(0.2*mInnerRadius * cos(angle1), 0.2*mInnerRadius * sin(angle1));
+    }
+    mHub->SetColor(*wxBLACK);
 }
+
 
 /**
  * Draw function. Draws the gear to the screen
@@ -55,6 +66,8 @@ void Gear::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     SetRotation(mGearRotation + mPhase);
     Component::Draw(graphics);
+
+    mHub->DrawPolygon(graphics, GetAbsolutePosition().x, GetAbsolutePosition().y);
 }
 
 /**
