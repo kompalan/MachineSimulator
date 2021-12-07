@@ -18,8 +18,8 @@ MachineDrawable::MachineDrawable(const std::wstring &name, const std::wstring &f
     MachineFactory factory(filename);
     mMachine = factory.CreateMachine();
     mMachine->SetSpeed(1.0);
-    mMachine->SetMachineFrame(0);
     mMachine->SetFrameRate(30);
+    mMachine->SetMachineFrame(0);
 }
 
 /**
@@ -40,7 +40,7 @@ void MachineDrawable::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void MachineDrawable::SetFrame(int frame)
 {
-    mMachine->SetMachineFrame(frame);
+    mMachine->SetMachineFrame(frame - 100);
 }
 
 /**

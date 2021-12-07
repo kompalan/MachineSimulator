@@ -10,7 +10,7 @@
 #include "SpartyFactory.h"
 #include "Actor.h"
 #include "ImageDrawable.h"
-
+#include "MachineDrawableFactory.h"
 
 using namespace std;
 
@@ -48,6 +48,11 @@ std::shared_ptr<Picture> PictureFactory::Create(std::wstring imagesDir)
 
     sparty->SetPosition(wxPoint(550, 520));
     picture->AddActor(sparty);
+
+    MachineDrawableFactory machineDrawableFactory;
+    auto machine = machineDrawableFactory.Create(imagesDir);
+
+    picture->AddActor(machine);
 
     return picture;
 }

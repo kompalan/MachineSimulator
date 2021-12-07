@@ -14,6 +14,7 @@
 ActualMachine::ActualMachine()
 {
     mMotor = std::make_shared<Motor>();
+    mTime = 0;
 }
 
 /**
@@ -44,7 +45,7 @@ void ActualMachine::SetLocation(wxPoint location)
  */
 void ActualMachine::SetMachineFrame(int frame)
 {
-    mCurrentFrame = frame;
+    mCurrentFrame = fmax(0, frame);
     mTime = mCurrentFrame / mFrameRate;
     mMotor->UpdateMachine(mTime);
 }

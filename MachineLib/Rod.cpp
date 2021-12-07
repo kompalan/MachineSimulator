@@ -28,8 +28,6 @@ Rod::Rod(double length)
 void Rod::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     SetColor(wxColor(128, 128, 128));
-    auto position = mSink->GetPosition();
-    SetPositionOffset(wxPoint(-(GetMachinePosition().x - position.x), GetMachinePosition().y - position.y));
     Component::Draw(graphics);
 }
 
@@ -38,6 +36,9 @@ void Rod::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void Rod::Update()
 {
+    auto position = mSink->GetPosition();
+    SetPositionOffset(wxPoint(-(GetMachinePosition().x - position.x), GetMachinePosition().y - position.y));
+
     mSource->UpdateSinks(this);
     mPistonSource->UpdateSinks(this);
 }
