@@ -49,6 +49,22 @@
 					<label>Timeline Propoerties...</label>
 					<help></help>
 				</object>
+				<object class="wxMenuItem" name="EditMachineAProperties">
+					<label>Set Machine A Offset Here</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="SetMachineNumberA">
+					<label>Set Machine A Number</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="EditMachineBProperties">
+					<label>Set Machine B Offset Here</label>
+					<help></help>
+				</object>
+				<object class="wxMenuItem" name="SetMachineNumberB">
+					<label>Set Machine B Number</label>
+					<help></help>
+				</object>
 			</object>
 			<object class="wxMenu" name="PlayMenu">
 				<label>_Play</label>
@@ -196,6 +212,63 @@
 						<flag>wxALL</flag>
 						<border>5</border>
 						<object class="wxTextCtrl" name="TimelineDlgFrameRate">
+							<value></value>
+						</object>
+					</object>
+				</object>
+			</object>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxStdDialogButtonSizer">
+					<object class="button">
+						<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="wxID_OK">
+							<label>&amp;OK</label>
+						</object>
+					</object>
+					<object class="button">
+						<flag>wxALIGN_CENTER_HORIZONTAL|wxALL</flag>
+						<border>5</border>
+						<object class="wxButton" name="wxID_CANCEL">
+							<label>&amp;Cancel</label>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+	<object class="wxDialog" name="OffsetDlg">
+		<style>wxDEFAULT_DIALOG_STYLE</style>
+		<title>Offset Parameters</title>
+		<centered>1</centered>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxGridSizer">
+					<rows>1</rows>
+					<cols>2</cols>
+					<vgap>0</vgap>
+					<hgap>0</hgap>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxALL</flag>
+						<border>5</border>
+						<object class="wxStaticText" name="m_staticText2">
+							<label>Machine Start Offset (in frames)</label>
+							<wrap>-1</wrap>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALIGN_CENTER_VERTICAL|wxALL</flag>
+						<border>5</border>
+						<object class="wxTextCtrl" name="TimelineDlgNumFrames">
 							<value></value>
 						</object>
 					</object>

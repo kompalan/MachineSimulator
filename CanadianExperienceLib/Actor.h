@@ -9,6 +9,7 @@
 #define CANADIANEXPERIENCE_ACTOR_H
 
 #include "AnimChannelPoint.h"
+#include "MachineDrawable.h"
 
 class Drawable;
 class Picture;
@@ -44,6 +45,9 @@ private:
 
     /// The actor position channel
     AnimChannelPoint mChannel;
+
+    /// The Machine Drawable
+    std::shared_ptr<MachineDrawable> mMachine;
 
 public:
     virtual ~Actor() {}
@@ -122,7 +126,6 @@ public:
 
     void SetKeyframe();
     void GetKeyframe();
-    void SetFrame(int frame);
 
     /**
      * The position animation channel

@@ -9,6 +9,7 @@
 #pragma once
 
 #include "Timeline.h"
+#include "MachineDrawable.h"
 
 class PictureObserver;
 class Actor;
@@ -30,6 +31,12 @@ private:
 
     /// The animation timeline
     Timeline mTimeline;
+
+    /// The machine A
+    std::shared_ptr<MachineDrawable> mMachineA;
+
+    /// The machine B
+    std::shared_ptr<MachineDrawable> mMachineB;
 
 public:
     Picture();
@@ -68,6 +75,8 @@ public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics);
 
     void AddActor(std::shared_ptr<Actor> actor);
+    void SetMachineA(std::shared_ptr<MachineDrawable> machine) { mMachineA = machine; }
+    void SetMachineB(std::shared_ptr<MachineDrawable> machine) { mMachineB = machine; }
 
     /** Iterator that iterates over the actors in a picture */
     class ActorIter
@@ -129,5 +138,14 @@ public:
     void Load(const wxString& filename);
 
     void Save(const wxString& filename);
+
+    void SetOffsetA(int offset);
+    void SetOffsetB(int offset);
+
+    int GetOffsetA() { return mMachineA->GetStartOffset(); };
+    int GetOffsetB() { return mMachineB->GetStartOffset(); };
+
+    void DoDialogA(wxWindow* parent);
+    void DoDialogB(wxWindow* parent);
 };
 

@@ -13,13 +13,18 @@
  * @param imagesDir Directory that contains images for this application
  * @return Pointer to MachineDrawable object
  */
-std::shared_ptr<Actor> MachineDrawableFactory::Create(std::wstring imagesDir)
+std::shared_ptr<Actor> MachineDrawableFactory::Create(std::wstring imagesDir, wxPoint position)
 {
     std::shared_ptr<Actor> actor = std::make_shared<Actor>(L"Machine");
 
-    auto machine = std::make_shared<MachineDrawable>(L"Machine", imagesDir);
+    mMachine = std::make_shared<MachineDrawable>(L"Machine", imagesDir, position);
 
-    actor->AddDrawable(machine);
+    actor->AddDrawable(mMachine);
 
     return actor;
+}
+
+std::shared_ptr<MachineDrawable> MachineDrawableFactory::GetMachineDrawable()
+{
+    return mMachine;
 }

@@ -36,6 +36,7 @@ private:
     /// Motor Object to Kick off Updates
     std::shared_ptr<Motor> mMotor;
 
+    double mSpeed = 0;
 public:
     ActualMachine();
 
@@ -65,6 +66,8 @@ public:
      * @return wxPoint for the location
      */
     wxPoint GetLocation() const { return mLocation; }
+
+    double GetMachineSpeed() const { return mSpeed; }
 };
 
 #endif //CANADIANEXPERIENCE_ACTUALMACHINE_H

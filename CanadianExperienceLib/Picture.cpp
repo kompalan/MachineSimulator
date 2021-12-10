@@ -35,8 +35,11 @@ void Picture::SetAnimationTime(double time)
     for (auto actor : mActors)
     {
         actor->GetKeyframe();
-        actor->SetFrame(mTimeline.GetCurrentFrame());
     }
+
+    mMachineA->SetFrame(mTimeline.GetCurrentFrame());
+    mMachineB->SetFrame(mTimeline.GetCurrentFrame());
+
 }
 
 /**
@@ -122,6 +125,10 @@ void Picture::Save(const wxString& filename)
     // It is possible to add attributes to the root node here
     //
     //root->AddAttribute(L"something", mSomething);
+    root->AddAttribute(L"machine-offset-a", wxString::Format(wxT("%i"), mMachineA->GetStartOffset()));
+    root->AddAttribute(L"machine-number-a", wxString::Format(wxT("%i"), mMachineA->GetMachineNumber()));
+    root->AddAttribute(L"machine-offset-b", wxString::Format(wxT("%i"), mMachineB->GetStartOffset()));
+    root->AddAttribute(L"machine-number-b", wxString::Format(wxT("%i"), mMachineB->GetMachineNumber()));
 
     if(!xmlDoc.Save(filename, wxXML_NO_INDENTATION))
     {
@@ -155,7 +162,36 @@ void Picture::Load(const wxString& filename)
     // It is possible to load attributes from the root node here
     //
     // mSomething = root->GetAttribute(L"something", L"default");
+    int machineOffsetA = wxAtoi(root->GetAttribute(L"machine-offset-a", L"0"));
+    int machineNumberA = wxAtoi(root->GetAttribute(L"machine-number-a", L"0"));
+    mMachineA->SetStartOffset(machineOffsetA);
+    mMachineA->SetMachineNumber(machineNumberA);
+
+    int machineOffsetB = wxAtoi(root->GetAttribute(L"machine-offset-b", L"0"));
+    int machineNumberB = wxAtoi(root->GetAttribute(L"machine-number-b", L"0"));
+    mMachineB->SetStartOffset(machineOffsetB);
+    mMachineB->SetMachineNumber(machineNumberB);
 
     SetAnimationTime(0);
     UpdateObservers();
+}
+
+void Picture::SetOffsetA(int offset)
+{
+    mMachineA->SetStartOffset(offset);
+}
+
+void Picture::SetOffsetB(int offset)
+{
+    mMachineB->SetStartOffset(offset);
+}
+
+void Picture::DoDialogA(wxWindow* parent)
+{
+    mMachineA->DoDialog(parent);
+}
+
+void Picture::DoDialogB(wxWindow* parent)
+{
+    mMachineB->DoDialog(parent);
 }

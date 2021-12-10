@@ -34,6 +34,18 @@ std::shared_ptr<Picture> PictureFactory::Create(std::wstring imagesDir)
     background->SetRoot(backgroundI);
     picture->AddActor(background);
 
+
+    MachineDrawableFactory machineDrawableFactory;
+    auto machine = machineDrawableFactory.Create(imagesDir, wxPoint(1050, 650));
+    picture->SetMachineA(machineDrawableFactory.GetMachineDrawable());
+    picture->AddActor(machine);
+
+    MachineDrawableFactory machineDrawableFactory2;
+    auto machine2 = machineDrawableFactory2.Create(imagesDir, wxPoint(350, 650));
+    picture->SetMachineB(machineDrawableFactory2.GetMachineDrawable());
+    picture->AddActor(machine2);
+
+
     // Create and add Harold
     HaroldFactory haroldFactory;
     auto harold = haroldFactory.Create(imagesDir);
@@ -48,11 +60,6 @@ std::shared_ptr<Picture> PictureFactory::Create(std::wstring imagesDir)
 
     sparty->SetPosition(wxPoint(550, 520));
     picture->AddActor(sparty);
-
-    MachineDrawableFactory machineDrawableFactory;
-    auto machine = machineDrawableFactory.Create(imagesDir);
-
-    picture->AddActor(machine);
 
     return picture;
 }

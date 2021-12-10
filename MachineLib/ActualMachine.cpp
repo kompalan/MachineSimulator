@@ -66,7 +66,8 @@ void ActualMachine::SetFrameRate(double rate)
 void ActualMachine::SetSpeed(double speed)
 {
     /// TODO: This might need to be changed to machine speed
-    mMotor->SetSpeed(speed);
+    // mMotor->SetSpeed(speed);
+    mSpeed = speed;
 }
 
 /**

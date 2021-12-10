@@ -90,6 +90,7 @@ void Actor::AddDrawable(std::shared_ptr<Drawable> drawable)
 }
 
 
+
 /**
  * Set the picture link for this actor.
  *
@@ -141,17 +142,5 @@ void Actor::GetKeyframe()
     for (auto drawable : mDrawablesInOrder)
     {
         drawable->GetKeyframe();
-    }
-}
-
-/**
- * Set A Frame on the Actor
- * @param frame Frame to set
- */
-void Actor::SetFrame(int frame)
-{
-    for(auto drawable : mDrawablesInOrder)
-    {
-        drawable->SetFrame(frame);
     }
 }

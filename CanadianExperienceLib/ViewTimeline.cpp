@@ -72,6 +72,10 @@ ViewTimeline::ViewTimeline(wxFrame* parent, std::wstring imagesDir) :
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewTimeline::OnPlayPlay, this, XRCID("PlayPlay"));
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewTimeline::OnPlayStop, this, XRCID("PlayStop"));
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewTimeline::OnPlayPlayFromBeginning, this, XRCID("PlayPlayFromBeginning"));
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewTimeline::OnEditMachineAOffset, this, XRCID("EditMachineAProperties"));
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewTimeline::OnSetMachineNumberA, this, XRCID("SetMachineNumberA"));
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewTimeline::OnEditMachineBOffset, this, XRCID("EditMachineBProperties"));
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewTimeline::OnSetMachineNumberB, this, XRCID("SetMachineNumberB"));
 
     mTimer.SetOwner(this);
     mStopWatch.Start(0);
@@ -377,4 +381,24 @@ void ViewTimeline::OnFileOpen(wxCommandEvent& event)
     auto filename = loadFileDialog.GetPath();
     GetPicture()->Load(filename);
     Refresh();
+}
+
+void ViewTimeline::OnEditMachineAOffset(wxCommandEvent& event)
+{
+    GetPicture()->SetOffsetA(GetPicture()->GetTimeline()->GetCurrentFrame());
+}
+
+void ViewTimeline::OnSetMachineNumberA(wxCommandEvent& event)
+{
+    GetPicture()->DoDialogA(this);
+}
+
+void ViewTimeline::OnEditMachineBOffset(wxCommandEvent& event)
+{
+    GetPicture()->SetOffsetB(GetPicture()->GetTimeline()->GetCurrentFrame());
+}
+
+void ViewTimeline::OnSetMachineNumberB(wxCommandEvent& event)
+{
+    GetPicture()->DoDialogB(this);
 }

@@ -8,6 +8,8 @@
 #ifndef CANADIANEXPERIENCE_MACHINEDRAWABLEFACTORY_H
 #define CANADIANEXPERIENCE_MACHINEDRAWABLEFACTORY_H
 
+#include "MachineDrawable.h"
+
 class Actor;
 
 /**
@@ -15,9 +17,11 @@ class Actor;
  */
 class MachineDrawableFactory {
 private:
+    std::shared_ptr<MachineDrawable> mMachine;
 
 public:
-    std::shared_ptr<Actor> Create(std::wstring imagesDir);
+    std::shared_ptr<Actor> Create(std::wstring imagesDir, wxPoint position);
+    std::shared_ptr<MachineDrawable> GetMachineDrawable();
 };
 
 #endif //CANADIANEXPERIENCE_MACHINEDRAWABLEFACTORY_H

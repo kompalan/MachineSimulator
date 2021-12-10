@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Motor.h"
+#include "ActualMachine.h"
 
 /// Rotor Radius Constant
 const static double BasicRotorRadius = 15;
@@ -64,6 +65,7 @@ void Motor::Draw(std::shared_ptr<wxGraphicsContext> graphics)
  */
 void Motor::UpdateMachine(double time)
 {
+    mSpeed = GetMachine()->GetMachineSpeed();
     mRotation = time * mSpeed;
     Update();
 }

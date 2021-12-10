@@ -88,15 +88,17 @@ std::shared_ptr<Actor> HaroldFactory::Create(std::wstring imagesDir)
     rhand->AddPoint(wxPoint(11, -2));
     rarm->AddChild(rhand);
 
-    auto flag = make_shared<ImageDrawable>(L"Flag", imagesDir + L"/msu_flag.png");
-    flag->SetCenter(wxPoint(44, 31));
-    flag->SetPosition(wxPoint(-200, -130));
-    larm->AddChild(flag);
+    auto flag = std::make_shared<ImageDrawable>(L"Flag", imagesDir + L"/msu_flag.png");
+    flag->SetCenter(wxPoint(100, 300));
+    flag->SetPosition(wxPoint(30, 40));
+    flag->SetRotation(1.5);
+    rhand->AddChild(flag);
+    actor->AddDrawable(flag);
 
 
     actor->AddDrawable(larm);
     actor->AddDrawable(rarm);
-    actor->AddDrawable(flag);
+
     actor->AddDrawable(rhand);
     actor->AddDrawable(lhand);
     actor->AddDrawable(rleg);

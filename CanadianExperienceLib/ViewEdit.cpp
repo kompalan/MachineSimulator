@@ -36,6 +36,11 @@ ViewEdit::ViewEdit(wxFrame* parent) :wxScrolledCanvas(parent, wxID_ANY)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewEdit::OnEditRotate, this, XRCID("EditRotate"));
     parent->Bind(wxEVT_UPDATE_UI, &ViewEdit::OnUpdateEditMove, this, XRCID("EditMove"));
     parent->Bind(wxEVT_UPDATE_UI, &ViewEdit::OnUpdateEditRotate, this, XRCID("EditRotate"));
+
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewEdit::OnEditMove, this, XRCID("EditMove"));
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &ViewEdit::OnEditRotate, this, XRCID("EditRotate"));
+    parent->Bind(wxEVT_UPDATE_UI, &ViewEdit::OnUpdateEditMove, this, XRCID("EditMove"));
+    parent->Bind(wxEVT_UPDATE_UI, &ViewEdit::OnUpdateEditRotate, this, XRCID("EditRotate"));
 }
 
 /**
@@ -211,6 +216,26 @@ void ViewEdit::OnUpdateEditMove(wxUpdateUIEvent& event)
 void ViewEdit::OnUpdateEditRotate(wxUpdateUIEvent& event)
 {
     event.Check(mMode == Mode::Rotate);
+}
+
+void ViewEdit::OnMachineA(wxCommandEvent& event)
+{
+
+}
+
+void ViewEdit::OnMachineB(wxCommandEvent& event)
+{
+
+}
+
+void ViewEdit::OnUpdateMachineA(wxUpdateUIEvent& event)
+{
+
+}
+
+void ViewEdit::OnUpdateMachineB(wxUpdateUIEvent& event)
+{
+
 }
 
 

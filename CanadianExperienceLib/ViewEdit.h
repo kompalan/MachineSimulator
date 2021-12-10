@@ -32,6 +32,11 @@ private:
     void OnUpdateEditMove(wxUpdateUIEvent& event);
     void OnUpdateEditRotate(wxUpdateUIEvent& event);
 
+    void OnMachineA(wxCommandEvent& event);
+    void OnMachineB(wxCommandEvent& event);
+    void OnUpdateMachineA(wxUpdateUIEvent& event);
+    void OnUpdateMachineB(wxUpdateUIEvent& event);
+
     /// The last mouse position
     wxPoint mLastMouse = wxPoint(0, 0);
 
@@ -45,6 +50,7 @@ public:
     /// The current mouse mode
     enum class Mode {Move, Rotate};
 
+    enum class MachineType {A, B};
     /// The currently set mouse mode
     Mode mMode = Mode::Move;
 

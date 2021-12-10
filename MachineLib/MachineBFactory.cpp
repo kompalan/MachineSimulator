@@ -47,7 +47,7 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     // Add A Blue Gear of Outer Radius 90 and 20 teeth
     auto gear = std::make_shared<Gear>(45, 85, 80, *wxBLUE);
     machine->AddComponent(gear);
-    gear->SetPositionOffset(wxPoint(250, 250));
+    gear->SetPositionOffset(wxPoint(50, 50));
 
     // Constrain the Gear to the Motor via a Rotation sink
     motor->GetSource()->AddSink(gear->MakeSink());
@@ -55,7 +55,7 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     // Add A Second, Smaller Black Gear with 10 teeth and outer radius 40
     auto gear2 = std::make_shared<Gear>(20, 35, 30, *wxBLACK);
     machine->AddComponent(gear2);
-    gear2->SetPositionOffset(wxPoint(250, 250));
+    gear2->SetPositionOffset(wxPoint(50, 50));
 
     // Constrain the Gear to the Bigger Gear via a Rotation Sink
     gear->GetSource()->AddSink(gear2->MakeSink());
@@ -64,21 +64,21 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     auto gear3 = std::make_shared<Gear>(10, 25, 20, *wxRED);
     machine->AddComponent(gear3);
     gear2->AddGear(gear3.get());
-    gear3->SetPositionOffset(wxPoint(250+17.5+38, 250));
+    gear3->SetPositionOffset(wxPoint(50+17.5+38, 50));
     gear3->SetPhase(-0.1);
 
     // Add A fourth, green gear and constrain it to gear 1
     auto gear4 = std::make_shared<Gear>(15, 25, 20, *wxGREEN);
     machine->AddComponent(gear4);
     gear->AddGear(gear4.get());
-    gear4->SetPositionOffset(wxPoint(250+105, 250));
+    gear4->SetPositionOffset(wxPoint(50+105, 50));
     gear4->SetPhase(-0.1);
 
     // Add an Arm of length 100
     auto arm1 = std::make_shared<Arm>(100, mImagesDir + L"/arm1.png");
     machine->AddComponent(arm1);
-    arm1->SetPositionOffset(wxPoint(50, 50));
-    motor->GetSource()->AddSink(arm1->GetSink().get());
+    arm1->SetPositionOffset(wxPoint(50+105, 50));
+    gear4->GetSource()->AddSink(arm1->GetSink().get());
 
     auto piston1 = std::make_shared<Piston>(mImagesDir + L"/piston.png");
     piston1->SetPositionOffset(wxPoint(-100, 100));
@@ -89,8 +89,10 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     machine->AddComponent(rod);
 
     auto lever = std::make_shared<Lever>(400, mImagesDir + L"/lever.png");
-    lever->SetPositionOffset(wxPoint(-200, 200));
+    lever->SetPositionOffset(wxPoint(50, 200));
     rod->GetSource()->AddSink(lever->GetSink().get());
+
+    auto rod1 = std::make_shared<Rod>(200);
 
     machine->AddComponent(lever);
 

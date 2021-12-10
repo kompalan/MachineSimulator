@@ -30,6 +30,12 @@ private:
     void OnFileSaveAs(wxCommandEvent& event);
     void OnFileOpen(wxCommandEvent& event);
 
+    void OnEditMachineAOffset(wxCommandEvent& event);
+    void OnSetMachineNumberA(wxCommandEvent& event);
+
+    void OnEditMachineBOffset(wxCommandEvent& event);
+    void OnSetMachineNumberB(wxCommandEvent& event);
+
     /// Bitmap image for the pointer
     std::unique_ptr<wxImage> mPointerImage;
 
