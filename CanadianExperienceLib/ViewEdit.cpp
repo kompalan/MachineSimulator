@@ -218,24 +218,3 @@ void ViewEdit::OnUpdateEditRotate(wxUpdateUIEvent& event)
     event.Check(mMode == Mode::Rotate);
 }
 
-void ViewEdit::OnMachineA(wxCommandEvent& event)
-{
-
-}
-
-void ViewEdit::OnMachineB(wxCommandEvent& event)
-{
-
-}
-
-void ViewEdit::OnUpdateMachineA(wxUpdateUIEvent& event)
-{
-
-}
-
-void ViewEdit::OnUpdateMachineB(wxUpdateUIEvent& event)
-{
-
-}
-
-

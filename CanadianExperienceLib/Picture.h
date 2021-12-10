@@ -75,7 +75,17 @@ public:
     void Draw(std::shared_ptr<wxGraphicsContext> graphics);
 
     void AddActor(std::shared_ptr<Actor> actor);
+
+    /**
+     * Set Machine A
+     * @param machine Machine to set
+     */
     void SetMachineA(std::shared_ptr<MachineDrawable> machine) { mMachineA = machine; }
+
+    /**
+     * Set Machine B
+     * @param machine Machine to set
+     */
     void SetMachineB(std::shared_ptr<MachineDrawable> machine) { mMachineB = machine; }
 
     /** Iterator that iterates over the actors in a picture */
@@ -142,8 +152,17 @@ public:
     void SetOffsetA(int offset);
     void SetOffsetB(int offset);
 
-    int GetOffsetA() { return mMachineA->GetStartOffset(); };
-    int GetOffsetB() { return mMachineB->GetStartOffset(); };
+    /**
+     * Get the Offset for Machine A
+     * @return Machine A Offset in Frames
+     */
+    int GetOffsetA() { return mMachineA->GetStartOffset(); }
+
+    /**
+     * Get the Offset for Machine B
+     * @return Machine B Offset in Frames
+     */
+    int GetOffsetB() { return mMachineB->GetStartOffset(); }
 
     void DoDialogA(wxWindow* parent);
     void DoDialogB(wxWindow* parent);

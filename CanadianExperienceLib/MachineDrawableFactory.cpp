@@ -11,6 +11,7 @@
 /**
  * This is a factory method that creates the MachineDrawable
  * @param imagesDir Directory that contains images for this application
+ * @param position Position to set machine at
  * @return Pointer to MachineDrawable object
  */
 std::shared_ptr<Actor> MachineDrawableFactory::Create(std::wstring imagesDir, wxPoint position)
@@ -24,6 +25,10 @@ std::shared_ptr<Actor> MachineDrawableFactory::Create(std::wstring imagesDir, wx
     return actor;
 }
 
+/**
+ * Get the MachineDrawable
+ * @return MachineDrawable object
+ */
 std::shared_ptr<MachineDrawable> MachineDrawableFactory::GetMachineDrawable()
 {
     return mMachine;

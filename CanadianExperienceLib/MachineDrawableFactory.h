@@ -17,6 +17,7 @@ class Actor;
  */
 class MachineDrawableFactory {
 private:
+    /// MahcineDrawable Object
     std::shared_ptr<MachineDrawable> mMachine;
 
 public:

@@ -147,7 +147,13 @@ public:
      * @param offset Offset in frames
      */
     virtual void SetStartOffset(int offset) {};
+
+    /**
+     * Get the Start Offset
+     * @return the Starting Offset
+     */
     virtual int GetStartOffset() { return 0; }
+
     /**
      * The angle animation channel
      * @return Pointer to animation channel

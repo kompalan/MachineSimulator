@@ -57,16 +57,11 @@ private:
 public:
     static const int Height = 90;      ///< Height to make this window
 
-
     ViewTimeline(wxFrame* parent, std::wstring imagesDir);
 
     void UpdateObserver() override;
 
-
-
     void Stop();
-
-
 };
 
 

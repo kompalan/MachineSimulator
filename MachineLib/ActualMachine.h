@@ -36,6 +36,7 @@ private:
     /// Motor Object to Kick off Updates
     std::shared_ptr<Motor> mMotor;
 
+    /// Speed of the Machine
     double mSpeed = 0;
 public:
     ActualMachine();
@@ -67,6 +68,10 @@ public:
      */
     wxPoint GetLocation() const { return mLocation; }
 
+    /**
+     * Getter for the Machine Speed
+     * @return Machine Speed
+     */
     double GetMachineSpeed() const { return mSpeed; }
 };
 

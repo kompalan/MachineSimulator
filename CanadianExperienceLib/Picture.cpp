@@ -176,21 +176,37 @@ void Picture::Load(const wxString& filename)
     UpdateObservers();
 }
 
+/**
+ * Set the Frame offset for Machine A
+ * @param offset Frame offset to set
+ */
 void Picture::SetOffsetA(int offset)
 {
     mMachineA->SetStartOffset(offset);
 }
 
+/**
+ * Set the Frame offset for Machine B
+ * @param offset Frame offset to set
+ */
 void Picture::SetOffsetB(int offset)
 {
     mMachineB->SetStartOffset(offset);
 }
 
+/**
+ * Do the Machine A Number dialog
+ * @param parent Window parent object
+ */
 void Picture::DoDialogA(wxWindow* parent)
 {
     mMachineA->DoDialog(parent);
 }
 
+/**
+ * Do the Machine B Number dialog
+ * @param parent Window parent object
+ */
 void Picture::DoDialogB(wxWindow* parent)
 {
     mMachineB->DoDialog(parent);

@@ -12,6 +12,7 @@
  * Constructor
  * @param name Name of the Machine
  * @param filename Path to images
+ * @param position Position to put the Machine
  */
 MachineDrawable::MachineDrawable(const std::wstring &name, const std::wstring &filename, wxPoint position) : Drawable(name)
 {
@@ -54,16 +55,28 @@ bool MachineDrawable::HitTest(wxPoint pos)
     return false;
 }
 
+/**
+ * Set the Starting Offset for A Machine
+ * @param offset Frame to offset by
+ */
 void MachineDrawable::SetStartOffset(int offset)
 {
     mMachineStartOffset = offset;
 }
 
+/**
+ * Get the Starting Offset for A Machine
+ * @return Frames that this machine is offset by
+ */
 int MachineDrawable::GetStartOffset()
 {
     return mMachineStartOffset;
 }
 
+/**
+ * Starts the SetMachineNumber dialog
+ * @param frame Parent window to start the dialog in
+ */
 void MachineDrawable::DoDialog(wxWindow* frame)
 {
     MachineDialog dlg(frame, mMachine);
@@ -74,11 +87,19 @@ void MachineDrawable::DoDialog(wxWindow* frame)
     }
 }
 
+/**
+ * Get the Current Machine Number
+ * @return Machine Number
+ */
 int MachineDrawable::GetMachineNumber()
 {
     return mMachine->GetMachineNumber();
 }
 
+/**
+ * Set the Machine Number
+ * @param number Number to set
+ */
 void MachineDrawable::SetMachineNumber(int number)
 {
     mMachine->SetMachineNumber(number);

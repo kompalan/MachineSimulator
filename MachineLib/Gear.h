@@ -44,7 +44,7 @@ private:
     /// Phase offset of the gear (used for meshing)
     double mPhase = 0.0;
 
-    // Hub of the Gear
+    /// Hub of the Gear
     std::shared_ptr<Polygon> mHub;
 
 public:

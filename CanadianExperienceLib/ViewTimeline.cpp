@@ -383,21 +383,37 @@ void ViewTimeline::OnFileOpen(wxCommandEvent& event)
     Refresh();
 }
 
+/**
+ * Handler to set the Machine Offset for Machine A
+ * @param event wxCommandEvent object
+ */
 void ViewTimeline::OnEditMachineAOffset(wxCommandEvent& event)
 {
     GetPicture()->SetOffsetA(GetPicture()->GetTimeline()->GetCurrentFrame());
 }
 
+/**
+ * Handler to set the Machine Number for Machine A
+ * @param event wxCommandEvent object
+ */
 void ViewTimeline::OnSetMachineNumberA(wxCommandEvent& event)
 {
     GetPicture()->DoDialogA(this);
 }
 
+/**
+ * Handler to set the Machine B Offset
+ * @param event wxCommandEvent object
+ */
 void ViewTimeline::OnEditMachineBOffset(wxCommandEvent& event)
 {
     GetPicture()->SetOffsetB(GetPicture()->GetTimeline()->GetCurrentFrame());
 }
 
+/**
+ * Handler to set the Machine B offset
+ * @param event wxCommandEvent object
+ */
 void ViewTimeline::OnSetMachineNumberB(wxCommandEvent& event)
 {
     GetPicture()->DoDialogB(this);
