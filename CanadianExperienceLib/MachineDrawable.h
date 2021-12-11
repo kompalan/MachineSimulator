@@ -24,6 +24,7 @@ private:
 
     /// Position of the Machine
     wxPoint mPosition;
+
 public:
 
     MachineDrawable(const std::wstring &name, const std::wstring &filename, const wxPoint position);

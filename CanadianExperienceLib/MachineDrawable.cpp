@@ -84,6 +84,7 @@ void MachineDrawable::DoDialog(wxWindow* frame)
     {
         mMachine->SetFrameRate(30);
         mMachine->SetSpeed(1.0);
+        mMachine->SetMachineFrame(0);
     }
 }
 

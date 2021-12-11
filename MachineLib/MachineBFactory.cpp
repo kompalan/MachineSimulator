@@ -12,6 +12,7 @@
 #include "Arm.h"
 #include "Gear.h"
 #include "LeverEndSource.h"
+#include "PistonSource.h"
 
 /**
  * Constructor
@@ -80,9 +81,7 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     arm1->SetPositionOffset(wxPoint(50+105, 50));
     gear4->GetSource()->AddSink(arm1->GetSink().get());
 
-    auto piston1 = std::make_shared<Piston>(mImagesDir + L"/piston.png");
-    piston1->SetPositionOffset(wxPoint(-100, 100));
-    machine->AddComponent(piston1);
+
 
     auto rod = std::make_shared<Rod>(200);
     arm1->GetSource()->AddSink(rod->GetSink().get());
@@ -91,10 +90,17 @@ std::shared_ptr<ActualMachine> MachineBFactory::Create()
     auto lever = std::make_shared<Lever>(400, mImagesDir + L"/lever.png");
     lever->SetPositionOffset(wxPoint(50, 200));
     rod->GetSource()->AddSink(lever->GetSink().get());
-
-    auto rod1 = std::make_shared<Rod>(200);
-
     machine->AddComponent(lever);
+
+    auto rod1 = std::make_shared<Rod>(100);
+    lever->GetRodSource()->AddSink(rod1->GetSink().get());
+    machine->AddComponent(rod1);
+
+    auto piston1 = std::make_shared<Piston>(mImagesDir + L"/piston.png");
+    piston1->SetPositionOffset(wxPoint(-100, 100));
+    rod1->GetPistonSource()->AddSink(piston1->GetSink().get());
+
+    machine->AddComponent(piston1);
 
     return machine;
 }
